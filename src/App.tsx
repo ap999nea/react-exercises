@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Card } from "./components/ui/card";
+import { TodoItem } from "./TodoItem";
 
-interface Todo {
+export interface Todo {
   id: number;
-  todo: string;
+  task: string;
   completed: boolean;
 }
 
@@ -12,7 +13,22 @@ export const App = () => {
   const [todos, setTodos] = useState<Todo[]>([
     {
       id: 1,
-      todo: "Learn React",
+      task: "Learn React",
+      completed: false,
+    },
+    {
+      id: 2,
+      task: "Learn Angular",
+      completed: false,
+    },
+    {
+      id: 3,
+      task: "Learn Javascript",
+      completed: false,
+    },
+    {
+      id: 4,
+      task: "Make Money",
       completed: false,
     },
   ]);
@@ -20,18 +36,30 @@ export const App = () => {
   const addTodo = () => {
     const newTodo: Todo = {
       id: Math.random(),
-      todo,
+      task: todo,
       completed: false,
     };
     setTodos((todos) => [...todos, newTodo]);
     setTodo("");
   };
 
+  const toggleTodo = (id: number) => {
+    const newTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo,
+    );
+    setTodos(newTodos);
+  };
+
+  const deleteTodo = (id: number) => {
+    const newTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(newTodos);
+  };
+
   return (
     <div className="flex flex-col items-center my-6 gap-6">
       <h1 className="text-3xl font-bold">Simple Todo App</h1>
       <Card className="w-5/6 md:w-4/6">
-        <form className="flex flex-col sm:flex-row justify-between mx-6 gap-6 sm:gap-0">
+        <form className="flex flex-col sm:flex-row justify-between gap-6 sm:gap-0">
           <div className="flex gap-4 items-center content-between justify-between">
             <label className="font-bold" htmlFor="todo">
               Todo:
@@ -55,9 +83,14 @@ export const App = () => {
           </button>
         </form>
       </Card>
-      <ul className="list-decimal w-5/6 md:w-4/6 list-inside">
+      <ul className="list-decimal w-5/6 md:w-4/6 list-inside flex flex-col gap-6">
         {todos.map((todo) => (
-          <li key={todo.id}>{todo.todo}</li>
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            toggleTodo={() => toggleTodo(todo.id)}
+            deleteTodo={() => deleteTodo(todo.id)}
+          />
         ))}
       </ul>
     </div>
