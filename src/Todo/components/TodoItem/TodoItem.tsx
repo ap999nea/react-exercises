@@ -1,7 +1,7 @@
 import { Trash } from "lucide-react";
-import type { Todo } from "@/App";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+import type { Todo } from "@/Todo/TodoApp";
 
 interface Props {
   todo: Todo;

@@ -1,98 +1,140 @@
-import { useState } from "react";
-import { Card } from "./components/ui/card";
-import { TodoItem } from "./TodoItem";
-
-export interface Todo {
-  id: number;
-  task: string;
-  completed: boolean;
-}
+import { Outlet } from "react-router-dom";
+import {
+  Menubar,
+  MenubarCheckboxItem,
+  MenubarContent,
+  MenubarGroup,
+  MenubarItem,
+  MenubarMenu,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarSub,
+  MenubarSubContent,
+  MenubarSubTrigger,
+  MenubarTrigger,
+} from "./components/ui/menubar";
 
 export const App = () => {
-  const [todo, setTodo] = useState<string>("");
-  const [todos, setTodos] = useState<Todo[]>([
-    {
-      id: 1,
-      task: "Learn React",
-      completed: false,
-    },
-    {
-      id: 2,
-      task: "Learn Angular",
-      completed: false,
-    },
-    {
-      id: 3,
-      task: "Learn Javascript",
-      completed: false,
-    },
-    {
-      id: 4,
-      task: "Make Money",
-      completed: false,
-    },
-  ]);
-
-  const addTodo = () => {
-    const newTodo: Todo = {
-      id: Math.random(),
-      task: todo,
-      completed: false,
-    };
-    setTodos((todos) => [...todos, newTodo]);
-    setTodo("");
-  };
-
-  const toggleTodo = (id: number) => {
-    const newTodos = todos.map((todo) =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo,
-    );
-    setTodos(newTodos);
-  };
-
-  const deleteTodo = (id: number) => {
-    const newTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(newTodos);
-  };
-
   return (
-    <div className="flex flex-col items-center my-6 gap-6">
-      <h1 className="text-3xl font-bold">Simple Todo App</h1>
-      <Card className="w-5/6 md:w-4/6">
-        <form className="flex flex-col sm:flex-row justify-between gap-6 sm:gap-0">
-          <div className="flex gap-4 items-center content-between justify-between">
-            <label className="font-bold" htmlFor="todo">
-              Todo:
-            </label>
-            <input
-              className="border-1 p-2 rounded-md"
-              type="text"
-              id="todo"
-              name="todo"
-              placeholder="Type here..."
-              value={todo}
-              onChange={(e) => setTodo(e.target.value)}
-            />
-          </div>
-          <button
-            className="border-1 p-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 hover:shadow"
-            type="button"
-            onClick={addTodo}
-          >
-            Add to list
-          </button>
-        </form>
-      </Card>
-      <ul className="list-decimal w-5/6 md:w-4/6 list-inside flex flex-col gap-6">
-        {todos.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            toggleTodo={() => toggleTodo(todo.id)}
-            deleteTodo={() => deleteTodo(todo.id)}
-          />
-        ))}
-      </ul>
+    <div className="h-screen w-screen flex flex-col items-center my-8 gap-8">
+      <Menubar className="w-[90%]">
+        <MenubarMenu>
+          <MenubarTrigger>File</MenubarTrigger>
+          <MenubarContent>
+            <MenubarGroup>
+              <MenubarItem>
+                New Tab <MenubarShortcut>⌘T</MenubarShortcut>
+              </MenubarItem>
+              <MenubarItem>
+                New Window <MenubarShortcut>⌘N</MenubarShortcut>
+              </MenubarItem>
+              <MenubarItem disabled>New Incognito Window</MenubarItem>
+            </MenubarGroup>
+            <MenubarSeparator />
+            <MenubarGroup>
+              <MenubarSub>
+                <MenubarSubTrigger>Share</MenubarSubTrigger>
+                <MenubarSubContent>
+                  <MenubarGroup>
+                    <MenubarItem>Email link</MenubarItem>
+                    <MenubarItem>Messages</MenubarItem>
+                    <MenubarItem>Notes</MenubarItem>
+                  </MenubarGroup>
+                </MenubarSubContent>
+              </MenubarSub>
+            </MenubarGroup>
+            <MenubarSeparator />
+            <MenubarGroup>
+              <MenubarItem>
+                Print... <MenubarShortcut>⌘P</MenubarShortcut>
+              </MenubarItem>
+            </MenubarGroup>
+          </MenubarContent>
+        </MenubarMenu>
+        <MenubarMenu>
+          <MenubarTrigger>Edit</MenubarTrigger>
+          <MenubarContent>
+            <MenubarGroup>
+              <MenubarItem>
+                Undo <MenubarShortcut>⌘Z</MenubarShortcut>
+              </MenubarItem>
+              <MenubarItem>
+                Redo <MenubarShortcut>⇧⌘Z</MenubarShortcut>
+              </MenubarItem>
+            </MenubarGroup>
+            <MenubarSeparator />
+            <MenubarGroup>
+              <MenubarSub>
+                <MenubarSubTrigger>Find</MenubarSubTrigger>
+                <MenubarSubContent>
+                  <MenubarGroup>
+                    <MenubarItem>Search the web</MenubarItem>
+                  </MenubarGroup>
+                  <MenubarSeparator />
+                  <MenubarGroup>
+                    <MenubarItem>Find...</MenubarItem>
+                    <MenubarItem>Find Next</MenubarItem>
+                    <MenubarItem>Find Previous</MenubarItem>
+                  </MenubarGroup>
+                </MenubarSubContent>
+              </MenubarSub>
+            </MenubarGroup>
+            <MenubarSeparator />
+            <MenubarGroup>
+              <MenubarItem>Cut</MenubarItem>
+              <MenubarItem>Copy</MenubarItem>
+              <MenubarItem>Paste</MenubarItem>
+            </MenubarGroup>
+          </MenubarContent>
+        </MenubarMenu>
+        <MenubarMenu>
+          <MenubarTrigger>View</MenubarTrigger>
+          <MenubarContent className="w-44">
+            <MenubarGroup>
+              <MenubarCheckboxItem>Bookmarks Bar</MenubarCheckboxItem>
+              <MenubarCheckboxItem checked>Full URLs</MenubarCheckboxItem>
+            </MenubarGroup>
+            <MenubarSeparator />
+            <MenubarGroup>
+              <MenubarItem inset>
+                Reload <MenubarShortcut>⌘R</MenubarShortcut>
+              </MenubarItem>
+              <MenubarItem disabled inset>
+                Force Reload <MenubarShortcut>⇧⌘R</MenubarShortcut>
+              </MenubarItem>
+            </MenubarGroup>
+            <MenubarSeparator />
+            <MenubarGroup>
+              <MenubarItem inset>Toggle Fullscreen</MenubarItem>
+            </MenubarGroup>
+            <MenubarSeparator />
+            <MenubarGroup>
+              <MenubarItem inset>Hide Sidebar</MenubarItem>
+            </MenubarGroup>
+          </MenubarContent>
+        </MenubarMenu>
+        <MenubarMenu>
+          <MenubarTrigger>Profiles</MenubarTrigger>
+          <MenubarContent>
+            <MenubarRadioGroup value="benoit">
+              <MenubarRadioItem value="andy">Andy</MenubarRadioItem>
+              <MenubarRadioItem value="benoit">Benoit</MenubarRadioItem>
+              <MenubarRadioItem value="Luis">Luis</MenubarRadioItem>
+            </MenubarRadioGroup>
+            <MenubarSeparator />
+            <MenubarGroup>
+              <MenubarItem inset>Edit...</MenubarItem>
+            </MenubarGroup>
+            <MenubarSeparator />
+            <MenubarGroup>
+              <MenubarItem inset>Add Profile...</MenubarItem>
+            </MenubarGroup>
+          </MenubarContent>
+        </MenubarMenu>
+      </Menubar>
+      <Outlet />
     </div>
   );
 };
