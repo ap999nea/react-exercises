@@ -14,10 +14,16 @@ export const App = () => {
             <NavLink to="/">Home</NavLink>
           </NavigationMenuLink>
           <NavigationMenuLink>
-            <NavLink to="/todo-app">Todo App</NavLink>
+            <NavLink to="/todo">Todo App</NavLink>
           </NavigationMenuLink>
           <NavigationMenuLink>
-            <NavLink to="/weather-app">Weather App</NavLink>
+            <NavLink to="/weather">Weather App</NavLink>
+          </NavigationMenuLink>
+          <NavigationMenuLink>
+            <NavLink to="/image-gallery">Image Gallery</NavLink>
+          </NavigationMenuLink>
+          <NavigationMenuLink>
+            <NavLink to="/form-builder">Form Builder</NavLink>
           </NavigationMenuLink>
         </div>
         <div className="flex items-center gap-4">
