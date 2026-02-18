@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import { Card } from "../components/ui/card";
 import { TodoItem } from "./components/TodoItem/TodoItem";
 
@@ -56,9 +57,9 @@ export const TodoApp = () => {
   };
 
   return (
-    <div className="flex flex-col items-center my-6 gap-6">
+    <div className="flex flex-col gap-6">
       <h1 className="text-3xl font-bold">Simple Todo App</h1>
-      <Card className="w-5/6 md:w-4/6">
+      <Card className="">
         <form className="flex flex-col sm:flex-row justify-between gap-6 sm:gap-0">
           <div className="flex gap-4 items-center content-between justify-between">
             <label className="font-bold" htmlFor="todo">
@@ -74,16 +75,12 @@ export const TodoApp = () => {
               onChange={(e) => setTodo(e.target.value)}
             />
           </div>
-          <button
-            className="border-1 p-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 hover:shadow"
-            type="button"
-            onClick={addTodo}
-          >
+          <Button type="submit" disabled={todo.length === 0} onClick={addTodo}>
             Add to list
-          </button>
+          </Button>
         </form>
       </Card>
-      <ul className="list-decimal w-5/6 md:w-4/6 list-inside flex flex-col gap-6">
+      <ul className="list-decimal list-inside flex flex-col gap-6">
         {todos.map((todo) => (
           <TodoItem
             key={todo.id}

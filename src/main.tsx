@@ -1,10 +1,11 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { TodoApp } from "./Todo/TodoApp.tsx";
-import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { App } from "./App.tsx";
+import { ThemeProvider } from "./components/ThemeProvider/ThemeProvider.tsx";
+import { TodoApp } from "./Todo/TodoApp.tsx";
 import { Welcome } from "./Welcome.tsx";
+import "./index.css";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </StrictMode>,
 );

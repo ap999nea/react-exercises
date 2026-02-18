@@ -1,140 +1,32 @@
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
+import { ThemeToggle } from "./components/ThemeToggle/ThemeToggle";
 import {
-  Menubar,
-  MenubarCheckboxItem,
-  MenubarContent,
-  MenubarGroup,
-  MenubarItem,
-  MenubarMenu,
-  MenubarRadioGroup,
-  MenubarRadioItem,
-  MenubarSeparator,
-  MenubarShortcut,
-  MenubarSub,
-  MenubarSubContent,
-  MenubarSubTrigger,
-  MenubarTrigger,
-} from "./components/ui/menubar";
+  NavigationMenu,
+  NavigationMenuLink,
+} from "./components/ui/navigation-menu";
 
 export const App = () => {
   return (
-    <div className="h-screen w-screen flex flex-col items-center my-8 gap-8">
-      <Menubar className="w-[90%]">
-        <MenubarMenu>
-          <MenubarTrigger>File</MenubarTrigger>
-          <MenubarContent>
-            <MenubarGroup>
-              <MenubarItem>
-                New Tab <MenubarShortcut>⌘T</MenubarShortcut>
-              </MenubarItem>
-              <MenubarItem>
-                New Window <MenubarShortcut>⌘N</MenubarShortcut>
-              </MenubarItem>
-              <MenubarItem disabled>New Incognito Window</MenubarItem>
-            </MenubarGroup>
-            <MenubarSeparator />
-            <MenubarGroup>
-              <MenubarSub>
-                <MenubarSubTrigger>Share</MenubarSubTrigger>
-                <MenubarSubContent>
-                  <MenubarGroup>
-                    <MenubarItem>Email link</MenubarItem>
-                    <MenubarItem>Messages</MenubarItem>
-                    <MenubarItem>Notes</MenubarItem>
-                  </MenubarGroup>
-                </MenubarSubContent>
-              </MenubarSub>
-            </MenubarGroup>
-            <MenubarSeparator />
-            <MenubarGroup>
-              <MenubarItem>
-                Print... <MenubarShortcut>⌘P</MenubarShortcut>
-              </MenubarItem>
-            </MenubarGroup>
-          </MenubarContent>
-        </MenubarMenu>
-        <MenubarMenu>
-          <MenubarTrigger>Edit</MenubarTrigger>
-          <MenubarContent>
-            <MenubarGroup>
-              <MenubarItem>
-                Undo <MenubarShortcut>⌘Z</MenubarShortcut>
-              </MenubarItem>
-              <MenubarItem>
-                Redo <MenubarShortcut>⇧⌘Z</MenubarShortcut>
-              </MenubarItem>
-            </MenubarGroup>
-            <MenubarSeparator />
-            <MenubarGroup>
-              <MenubarSub>
-                <MenubarSubTrigger>Find</MenubarSubTrigger>
-                <MenubarSubContent>
-                  <MenubarGroup>
-                    <MenubarItem>Search the web</MenubarItem>
-                  </MenubarGroup>
-                  <MenubarSeparator />
-                  <MenubarGroup>
-                    <MenubarItem>Find...</MenubarItem>
-                    <MenubarItem>Find Next</MenubarItem>
-                    <MenubarItem>Find Previous</MenubarItem>
-                  </MenubarGroup>
-                </MenubarSubContent>
-              </MenubarSub>
-            </MenubarGroup>
-            <MenubarSeparator />
-            <MenubarGroup>
-              <MenubarItem>Cut</MenubarItem>
-              <MenubarItem>Copy</MenubarItem>
-              <MenubarItem>Paste</MenubarItem>
-            </MenubarGroup>
-          </MenubarContent>
-        </MenubarMenu>
-        <MenubarMenu>
-          <MenubarTrigger>View</MenubarTrigger>
-          <MenubarContent className="w-44">
-            <MenubarGroup>
-              <MenubarCheckboxItem>Bookmarks Bar</MenubarCheckboxItem>
-              <MenubarCheckboxItem checked>Full URLs</MenubarCheckboxItem>
-            </MenubarGroup>
-            <MenubarSeparator />
-            <MenubarGroup>
-              <MenubarItem inset>
-                Reload <MenubarShortcut>⌘R</MenubarShortcut>
-              </MenubarItem>
-              <MenubarItem disabled inset>
-                Force Reload <MenubarShortcut>⇧⌘R</MenubarShortcut>
-              </MenubarItem>
-            </MenubarGroup>
-            <MenubarSeparator />
-            <MenubarGroup>
-              <MenubarItem inset>Toggle Fullscreen</MenubarItem>
-            </MenubarGroup>
-            <MenubarSeparator />
-            <MenubarGroup>
-              <MenubarItem inset>Hide Sidebar</MenubarItem>
-            </MenubarGroup>
-          </MenubarContent>
-        </MenubarMenu>
-        <MenubarMenu>
-          <MenubarTrigger>Profiles</MenubarTrigger>
-          <MenubarContent>
-            <MenubarRadioGroup value="benoit">
-              <MenubarRadioItem value="andy">Andy</MenubarRadioItem>
-              <MenubarRadioItem value="benoit">Benoit</MenubarRadioItem>
-              <MenubarRadioItem value="Luis">Luis</MenubarRadioItem>
-            </MenubarRadioGroup>
-            <MenubarSeparator />
-            <MenubarGroup>
-              <MenubarItem inset>Edit...</MenubarItem>
-            </MenubarGroup>
-            <MenubarSeparator />
-            <MenubarGroup>
-              <MenubarItem inset>Add Profile...</MenubarItem>
-            </MenubarGroup>
-          </MenubarContent>
-        </MenubarMenu>
-      </Menubar>
-      <Outlet />
+    <div className="my-6 gap-16 w-screen flex flex-col items-center">
+      <NavigationMenu className="flex justify-between w-5/6 md:w-4/6">
+        <div className="flex justify-between gap-4">
+          <NavigationMenuLink>
+            <NavLink to="/">Home</NavLink>
+          </NavigationMenuLink>
+          <NavigationMenuLink>
+            <NavLink to="/todo-app">Todo App</NavLink>
+          </NavigationMenuLink>
+          <NavigationMenuLink>
+            <NavLink to="/weather-app">Weather App</NavLink>
+          </NavigationMenuLink>
+        </div>
+        <div className="flex items-center gap-4">
+          <ThemeToggle />
+        </div>
+      </NavigationMenu>
+      <div className="w-5/6 md:w-4/6">
+        <Outlet />
+      </div>
     </div>
   );
 };
