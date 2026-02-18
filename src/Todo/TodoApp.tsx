@@ -57,7 +57,7 @@ export const TodoApp = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 w-5/6 md:w-4/6">
       <h1 className="text-3xl font-bold">Simple Todo App</h1>
       <Card>
         <form className="flex flex-col sm:flex-row justify-between gap-6 sm:gap-0">

@@ -24,9 +24,7 @@ export const App = () => {
           <ThemeToggle />
         </div>
       </NavigationMenu>
-      <div className="w-5/6 md:w-4/6">
-        <Outlet />
-      </div>
+      <Outlet />
     </div>
   );
 };
