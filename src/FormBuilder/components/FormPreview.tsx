@@ -9,9 +9,7 @@ export const FormPreview = ({ state }: Props) => {
   return (
     <Card className="w-1/2 flex flex-col gap-6">
       <h2 className="font-semibold text-2xl">Preview</h2>
-      <h3 className="font-semibold text-xl">
-        Form Title: {state.formTitle ?? "-"}
-      </h3>
+      <h3 className="font-semibold text-xl">{state.formTitle ?? "-"}</h3>
       <div className="flex flex-col gap-4">
         {state.fields.length > 0 &&
           state.fields.map((item) => {

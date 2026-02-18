@@ -1,5 +1,4 @@
 import { useReducer } from "react";
-import { Card } from "@/components/ui/card";
 import { FormBuilder } from "./components/FormBuilder";
 import { FormPreview } from "./components/FormPreview";
 import type { FormAction, FormState } from "./models/form-builder.model";
