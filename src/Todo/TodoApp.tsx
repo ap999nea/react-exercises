@@ -59,14 +59,14 @@ export const TodoApp = () => {
   return (
     <div className="flex flex-col gap-6">
       <h1 className="text-3xl font-bold">Simple Todo App</h1>
-      <Card className="">
+      <Card>
         <form className="flex flex-col sm:flex-row justify-between gap-6 sm:gap-0">
           <div className="flex gap-4 items-center content-between justify-between">
             <label className="font-bold" htmlFor="todo">
               Todo:
             </label>
             <input
-              className="border-1 p-2 rounded-md"
+              className="border p-2 rounded-md"
               type="text"
               id="todo"
               name="todo"
@@ -75,7 +75,7 @@ export const TodoApp = () => {
               onChange={(e) => setTodo(e.target.value)}
             />
           </div>
-          <Button type="submit" disabled={todo.length === 0} onClick={addTodo}>
+          <Button type="submit" disabled={!todo} onClick={addTodo}>
             Add to list
           </Button>
         </form>
