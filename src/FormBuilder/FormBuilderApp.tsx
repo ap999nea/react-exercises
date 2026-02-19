@@ -26,6 +26,11 @@ const formReducer = (state: FormState, action: FormAction): FormState => {
         ...state,
         formTitle: action.payload,
       };
+    case "REORDER_FIELDS":
+      return {
+        ...state,
+        fields: action.payload,
+      };
 
     default:
       return state;
@@ -40,7 +45,7 @@ export const FormBuilderApp = () => {
       <h1 className="text-3xl font-bold">Form Builder</h1>
       <div className="flex gap-4">
         <FormBuilder dispatch={dispatch} />
-        <FormPreview state={state} />
+        <FormPreview state={state} dispatch={dispatch} />
       </div>
     </div>
   );
