@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -62,34 +62,29 @@ const locations = [
 
 export const WeatherApp = () => {
   const [location, setLocation] = useState<string>("");
-  const [coords, setCoords] = useState<Coords | null>(null);
   const [weather, setWeather] = useState<WeatherResponse | null>(null);
   const { loading, setIsLoading } = useLoader();
 
   const handleSubmitForm = async () => {
     setIsLoading(true);
     const response = await getGeoCode(location);
-    setCoords({ lat: response[0].lat, lon: response[0].lon });
     setIsLoading(false);
+    await fetchWeather({ lat: response[0].lat, lon: response[0].lon });
   };
 
-  useEffect(() => {
-    const fetchWeather = async () => {
-      if (!coords) return;
-      setIsLoading(true);
+  const fetchWeather = async (coords: Coords) => {
+    if (!coords) return;
+    setIsLoading(true);
 
-      try {
-        const data = await getCurrentWeather(coords);
-        setWeather(data);
-      } catch (error) {
-        console.error("Could not retrieve current weather data", error);
-      }
+    try {
+      const data = await getCurrentWeather(coords);
+      setWeather(data);
+    } catch (error) {
+      console.error("Could not retrieve current weather data", error);
+    }
 
-      setIsLoading(false);
-    };
-
-    fetchWeather();
-  }, [coords, setIsLoading]);
+    setIsLoading(false);
+  };
 
   return (
     <>
