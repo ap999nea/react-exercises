@@ -65,7 +65,7 @@ export const FormBuilder = ({ dispatch }: Props) => {
   };
 
   return (
-    <Card className="w-1/2 flex flex-col gap-6">
+    <Card className="flex flex-col gap-6">
       <h2 className="font-semibold text-2xl">Build</h2>
       <Button onClick={() => setShowTitleForm((prev) => !prev)}>
         Add Form Title

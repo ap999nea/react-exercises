@@ -43,7 +43,7 @@ export const FormBuilderApp = () => {
   return (
     <div className="flex flex-col gap-6 w-5/6 md:w-4/6">
       <h1 className="text-3xl font-bold">Form Builder</h1>
-      <div className="flex gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <FormBuilder dispatch={dispatch} />
         <FormPreview state={state} dispatch={dispatch} />
       </div>

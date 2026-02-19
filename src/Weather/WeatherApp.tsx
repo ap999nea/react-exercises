@@ -130,12 +130,12 @@ export const WeatherApp = () => {
               </form>
             </Card>
             {weather && (
-              <div className="flex flex-col gap-4">
-                <div className="flex gap-4">
-                  <CurrentWeather className="w-1/2" weather={weather} />
-                  <DailyForecast className="w-1/2" weather={weather} />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <CurrentWeather weather={weather} />
+                <DailyForecast weather={weather} />
+                <div className="md:col-span-2">
+                  <HourlyForecast weather={weather} />
                 </div>
-                <HourlyForecast weather={weather} />
               </div>
             )}
           </div>

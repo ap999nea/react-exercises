@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { ImageModal } from "./ImageModal";
+import { Modal } from "@/shared/components/Modal";
 
 type Props = {
   imageSrc: string;
@@ -20,11 +20,12 @@ export const CarouselImage = ({ imageSrc }: Props) => {
         onKeyDown={() => setIsModalOpen(!isModalOpen)}
       />
       {createPortal(
-        <ImageModal
+        <Modal
           isModalOpen={isModalOpen}
-          imageSrc={imageSrc}
           setModalOpen={() => setIsModalOpen(!isModalOpen)}
-        />,
+        >
+          <img src={imageSrc} alt="preview" className="w-full rounded-md" />
+        </Modal>,
         document.getElementById("root")!,
       )}
     </>

@@ -1,12 +1,16 @@
+import type { PropsWithChildren } from "react";
 import { Button } from "@/components/ui/button";
 
 type Props = {
   isModalOpen: boolean;
-  imageSrc: string;
   setModalOpen: () => void;
 };
 
-export const ImageModal = ({ isModalOpen, imageSrc, setModalOpen }: Props) => {
+export const Modal = ({
+  isModalOpen,
+  setModalOpen,
+  children,
+}: PropsWithChildren<Props>) => {
   if (!isModalOpen) return null;
 
   return (
@@ -18,7 +22,7 @@ export const ImageModal = ({ isModalOpen, imageSrc, setModalOpen }: Props) => {
             <Button onClick={setModalOpen}>Close</Button>
           </div>
 
-          <img src={imageSrc} alt="preview" className="w-full rounded-md" />
+          {children}
         </div>
       </div>
     </div>
