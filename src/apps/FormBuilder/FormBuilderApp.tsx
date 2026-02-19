@@ -31,6 +31,11 @@ const formReducer = (state: FormState, action: FormAction): FormState => {
         ...state,
         fields: action.payload,
       };
+    case "RESET_FORM":
+      return {
+        formTitle: null,
+        fields: [],
+      };
 
     default:
       return state;

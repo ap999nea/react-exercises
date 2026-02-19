@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card } from "../components/ui/card";
+import { Card } from "../../components/ui/card";
 import { TodoItem } from "./components/TodoItem/TodoItem";
 
 export interface Todo {

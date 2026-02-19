@@ -2,12 +2,15 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { App } from "./App.tsx";
+import { FormBuilderApp } from "./apps/FormBuilder/FormBuilderApp.tsx";
+import { ImageGalleryApp } from "./apps/ImageGallery/ImageGalleryApp.tsx";
+import { Cart } from "./apps/ShoppingCart/components/Cart.tsx";
+import { ProductList } from "./apps/ShoppingCart/components/ProductList.tsx";
+import { ShoppingCartApp } from "./apps/ShoppingCart/ShoppingCartApp.tsx";
+import { TodoApp } from "./apps/Todo/TodoApp.tsx";
+import { WeatherApp } from "./apps/Weather/WeatherApp.tsx";
 import { ThemeProvider } from "./components/ThemeProvider/ThemeProvider.tsx";
-import { FormBuilderApp } from "./FormBuilder/FormBuilderApp.tsx";
-import { ImageGalleryApp } from "./ImageGallery/ImageGalleryApp.tsx";
 import "./index.css";
-import { TodoApp } from "./Todo/TodoApp.tsx";
-import { WeatherApp } from "./Weather/WeatherApp.tsx";
 import { Welcome } from "./Welcome.tsx";
 
 const router = createBrowserRouter([
@@ -34,6 +37,20 @@ const router = createBrowserRouter([
       {
         path: "/form-builder",
         Component: FormBuilderApp,
+      },
+      {
+        path: "/shopping-cart",
+        Component: ShoppingCartApp,
+        children: [
+          {
+            index: true,
+            Component: ProductList,
+          },
+          {
+            path: "/shopping-cart/cart",
+            Component: Cart,
+          },
+        ],
       },
     ],
   },

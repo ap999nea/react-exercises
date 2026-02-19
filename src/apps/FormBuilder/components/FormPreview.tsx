@@ -51,8 +51,20 @@ export const FormPreview = ({ state, dispatch }: Props) => {
 
   return (
     <Card className="flex flex-col gap-6">
-      <h2 className="font-semibold text-2xl">Preview</h2>
-      <h3 className="font-semibold text-xl">{state.formTitle ?? "-"}</h3>
+      <div className="flex justify-between items-center">
+        <h2 className="font-semibold text-2xl">Preview</h2>
+        <Button
+          type="button"
+          className="self-end hover:bg-red-600"
+          disabled={!state.fields.length && !state.formTitle}
+          onClick={() => dispatch({ type: "RESET_FORM" })}
+        >
+          <Trash />
+        </Button>
+      </div>
+      <h3 className="font-semibold text-xl">
+        <code>{state.formTitle ?? "-"}</code>
+      </h3>
       <div className="flex flex-col gap-4">
         {state.fields.length > 0 &&
           state.fields.map((item, idx) => {

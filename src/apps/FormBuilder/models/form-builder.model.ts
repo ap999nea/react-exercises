@@ -25,4 +25,5 @@ export type FormAction =
         updates: Partial<BaseField>;
       };
     }
-  | { type: "REORDER_FIELDS"; payload: BaseField[] };
+  | { type: "REORDER_FIELDS"; payload: BaseField[] }
+  | { type: "RESET_FORM" };
