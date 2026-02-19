@@ -1,4 +1,6 @@
+import { Trash } from "lucide-react";
 import { type ActionDispatch, useRef } from "react";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import type { FormAction, FormState } from "../models/form-builder.model";
 
@@ -40,6 +42,13 @@ export const FormPreview = ({ state, dispatch }: Props) => {
     dragOverItemIndex.current = null;
   };
 
+  const removeField = (id: string) => {
+    dispatch({
+      type: "REMOVE_FIELD",
+      payload: id,
+    });
+  };
+
   return (
     <Card className="w-1/2 flex flex-col gap-6">
       <h2 className="font-semibold text-2xl">Preview</h2>
@@ -47,23 +56,55 @@ export const FormPreview = ({ state, dispatch }: Props) => {
       <div className="flex flex-col gap-4">
         {state.fields.length > 0 &&
           state.fields.map((item, idx) => {
+            const itemIsInput =
+              item.type === "text" ||
+              item.type === "number" ||
+              item.type === "checkbox" ||
+              item.type === "radio";
             return (
               <div
                 key={item.id}
-                className="border border-gray-600 p-2 rounded-md cursor-grab flex flex-col gap-4"
+                className="flex justify-between border border-gray-600 p-4 rounded-md cursor-grab "
                 draggable
                 onDragStart={() => handleDragStart(idx)}
                 onDragEnter={() => handleDragEnter(idx)}
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={handleDrop}
               >
-                <label htmlFor={item.id}>{item.label}</label>
-                <input
-                  type={item.type}
-                  key={item.id}
-                  name={item.id}
-                  placeholder={item.placeholder}
-                />
+                <div className="flex flex-col gap-4 w-3/4">
+                  <label htmlFor={item.id}>
+                    {item.label}
+                    {item.required ? "*" : ""}
+                  </label>
+                  {itemIsInput ? (
+                    <input
+                      className="border border-gray-600 p-2 rounded-lg"
+                      type={item.type}
+                      key={item.id}
+                      name={item.id}
+                      placeholder={item.placeholder}
+                    />
+                  ) : (
+                    <select
+                      id={item.id}
+                      name={item.id}
+                      className="border border-gray-600 p-2 rounded-lg"
+                    >
+                      {item.selectionOptions?.split(",")?.map((option) => (
+                        <option key={`${item.id}-${option}`} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                  )}
+                </div>
+                <Button
+                  type="button"
+                  className="self-end hover:bg-red-600"
+                  onClick={() => removeField(item.id)}
+                >
+                  <Trash />
+                </Button>
               </div>
             );
           })}

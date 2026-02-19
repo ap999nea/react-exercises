@@ -18,6 +18,7 @@ type FieldForm = {
   label: string;
   placeholder: string;
   required: boolean;
+  selectOptions?: string;
 };
 
 export const FormBuilder = ({ dispatch }: Props) => {
@@ -34,18 +35,20 @@ export const FormBuilder = ({ dispatch }: Props) => {
     handleSubmit: handleSubmitField,
     formState: { isValid: isValidField },
     reset,
+    watch,
   } = useForm<FieldForm>();
+
+  const fieldType = watch("type");
 
   const onSubmit = (data: TitleForm) => {
     dispatch({
       type: "UPDATE_FORM_TITLE",
       payload: data.titleForm,
     });
-    setShowTitleForm(false);
   };
 
   const onSubmitField = (data: FieldForm) => {
-    const { type, label, placeholder, required } = data;
+    const { type, label, placeholder, required, selectOptions } = data;
 
     dispatch({
       type: "ADD_FIELD",
@@ -55,6 +58,7 @@ export const FormBuilder = ({ dispatch }: Props) => {
         label,
         placeholder,
         required,
+        ...(selectOptions && { selectionOptions: selectOptions }),
       },
     });
     reset();
@@ -99,9 +103,25 @@ export const FormBuilder = ({ dispatch }: Props) => {
           </label>
           <select id="type" {...registerField("type", { required: true })}>
             <option value="text">Text</option>
+            <option value="number">Number</option>
             <option value="checkbox">Checkbox</option>
             <option value="radio">Radio</option>
+            <option value="select">Select</option>
           </select>
+          {fieldType === "select" && (
+            <>
+              <label className="font-bold" htmlFor="label">
+                Selection values:
+              </label>
+              <input
+                className="border p-2 rounded-md"
+                type="text"
+                id="type"
+                placeholder="Write selection values separated by commas..."
+                {...registerField("selectOptions", { required: true })}
+              />
+            </>
+          )}
           <label className="font-bold" htmlFor="label">
             Input label:
           </label>

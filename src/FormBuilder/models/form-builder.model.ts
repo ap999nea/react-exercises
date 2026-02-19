@@ -1,4 +1,4 @@
-export type FieldType = "text" | "checkbox" | "radio";
+export type FieldType = "text" | "checkbox" | "radio" | "number" | "select";
 
 export interface BaseField {
   id: string;
@@ -6,6 +6,7 @@ export interface BaseField {
   label: string;
   required: boolean;
   placeholder: string;
+  selectionOptions?: string;
 }
 
 export interface FormState {
