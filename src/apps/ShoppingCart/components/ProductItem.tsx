@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CartContext } from "../contexts/CartContext";
@@ -17,6 +18,7 @@ export const ProductItem = ({ product }: Props) => {
       type: "ADD_ITEM",
       payload: product,
     });
+    toast.success("Product added to cart", { position: "top-right" });
   };
 
   return (

@@ -1,5 +1,6 @@
 import { Minus, Plus } from "lucide-react";
 import { useContext } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CartContext } from "../contexts/CartContext";
@@ -18,6 +19,7 @@ export const CartItem = ({ product }: Props) => {
       type: "INCREASE_QUANTITY",
       payload: product,
     });
+    toast.success("Product quantity increased", { position: "top-right" });
   };
 
   const decreaseQuantity = () => {
@@ -25,6 +27,7 @@ export const CartItem = ({ product }: Props) => {
       type: "DECREASE_QUANTITY",
       payload: product,
     });
+    toast.success("Product quantity increased", { position: "top-right" });
   };
 
   const price = getProductPrice(product.price, product.quantity);

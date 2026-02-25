@@ -1,6 +1,7 @@
 import { ShoppingCart } from "lucide-react";
 import { useContext, useState } from "react";
 import { createPortal } from "react-dom";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/shared/components/Modal";
 import { CartContext } from "../contexts/CartContext";
@@ -18,11 +19,13 @@ export const Cart = () => {
       type: "CLEAR_CART",
       payload: {} as Product,
     });
+    toast.success("Cart cleared", { position: "top-right" });
   };
 
   const handleSubmitCart = () => {
     clearCart();
     setModalOpen(!modalOpen);
+    toast.success("Order placed", { position: "top-right" });
   };
 
   return (

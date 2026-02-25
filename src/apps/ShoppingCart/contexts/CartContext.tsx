@@ -2,7 +2,6 @@ import {
   type ActionDispatch,
   createContext,
   type PropsWithChildren,
-  useMemo,
   useReducer,
 } from "react";
 import type { Product } from "../types/product.type";
