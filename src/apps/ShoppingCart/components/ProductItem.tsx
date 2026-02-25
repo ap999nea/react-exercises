@@ -1,0 +1,32 @@
+import { useContext } from "react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { CartContext } from "../contexts/CartContext";
+import type { Product } from "../types/product.type";
+
+type Props = {
+  product: Product;
+};
+
+export const ProductItem = ({ product }: Props) => {
+  const { dispatch } = useContext(CartContext);
+
+  const addToCart = () => {
+    dispatch({
+      type: "ADD_ITEM",
+      payload: product,
+    });
+  };
+
+  return (
+    <Card className="flex flex-col gap-2">
+      <img
+        className="h-72 object-cover"
+        src={product.image}
+        alt={product.name}
+      />
+      <p className="font-semibold">{product.name}</p>
+      <Button onClick={addToCart}>Add to cart</Button>
+    </Card>
+  );
+};

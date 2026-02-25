@@ -37,7 +37,7 @@ const cartReducer = (state: State, action: Actions): State => {
   }
 };
 
-const CartContext = createContext<
+export const CartContext = createContext<
   State & { totalPrice: number; dispatch: ActionDispatch<[action: Actions]> }
 >({
   products: [],

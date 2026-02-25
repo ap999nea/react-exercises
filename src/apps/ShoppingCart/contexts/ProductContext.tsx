@@ -14,13 +14,55 @@ const initialState = {
 
 export const ProductContext = createContext<ProductProviderState>(initialState);
 
-const mockProducts = [
-  { id: uuid(), name: "Laptop", price: 1000, category: "tech" },
-  { id: uuid(), name: "Phone", price: 600, category: "tech" },
-  { id: uuid(), name: "Washing Machine", price: 400, category: "home" },
-  { id: uuid(), name: "Refrigerator", price: 700, category: "home" },
-  { id: uuid(), name: "T-Shirt", price: 20, category: "clothing" },
-  { id: uuid(), name: "Chihuahua Dog", price: 1000, category: "animals" },
+const mockProducts: Product[] = [
+  {
+    id: uuid(),
+    name: "Laptop",
+    price: 1000,
+    category: "tech",
+    image: "laptop.png",
+    quantity: 0,
+  },
+  {
+    id: uuid(),
+    name: "Phone",
+    price: 600,
+    category: "tech",
+    image: "phone.jpg",
+    quantity: 0,
+  },
+  {
+    id: uuid(),
+    name: "Washing Machine",
+    price: 400,
+    category: "home",
+    image: "washing.avif",
+    quantity: 0,
+  },
+  {
+    id: uuid(),
+    name: "Refrigerator",
+    price: 700,
+    category: "home",
+    image: "refrigerator.jpg",
+    quantity: 0,
+  },
+  {
+    id: uuid(),
+    name: "T-Shirt",
+    price: 20,
+    category: "clothing",
+    image: "shirt.jpg",
+    quantity: 0,
+  },
+  {
+    id: uuid(),
+    name: "Chihuahua Dog",
+    price: 1000,
+    category: "animals",
+    image: "chihuahua.jpg",
+    quantity: 0,
+  },
 ];
 
 export const ProductProvider = ({ children }: PropsWithChildren) => {
