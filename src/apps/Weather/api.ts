@@ -7,7 +7,7 @@ export const getGeoCode = async (location: string) => {
   const result = await axios
     .get<
       Geocode[]
-    >(`http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${API_KEY}`)
+    >(`https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${API_KEY}`)
     .then((res) => res.data);
   return result;
 };
