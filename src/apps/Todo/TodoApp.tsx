@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card } from "../../components/ui/card";
 import { TodoItem } from "./components/TodoItem/TodoItem";
@@ -42,6 +43,7 @@ export const TodoApp = () => {
     };
     setTodos((todos) => [...todos, newTodo]);
     setTodo("");
+    toast.success("Todo added", { position: "top-right" });
   };
 
   const toggleTodo = (id: number) => {
@@ -54,6 +56,7 @@ export const TodoApp = () => {
   const deleteTodo = (id: number) => {
     const newTodos = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
+    toast.success("Todo deleted", { position: "top-right" });
   };
 
   return (
