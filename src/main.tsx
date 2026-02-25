@@ -1,17 +1,23 @@
-import { StrictMode } from "react";
+import { lazy, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { App } from "./App.tsx";
 import { FormBuilderApp } from "./apps/FormBuilder/FormBuilderApp.tsx";
-import { ImageGalleryApp } from "./apps/ImageGallery/ImageGalleryApp.tsx";
 import { Cart } from "./apps/ShoppingCart/components/Cart.tsx";
 import { ProductList } from "./apps/ShoppingCart/components/ProductList.tsx";
-import { ShoppingCartApp } from "./apps/ShoppingCart/ShoppingCartApp.tsx";
 import { TodoApp } from "./apps/Todo/TodoApp.tsx";
 import { WeatherApp } from "./apps/Weather/WeatherApp.tsx";
 import { ThemeProvider } from "./components/ThemeProvider/ThemeProvider.tsx";
 import "./index.css";
 import { Welcome } from "./Welcome.tsx";
+
+const ImageGallery = lazy(
+  () => import("@/apps/ImageGallery/ImageGalleryApp.tsx"),
+);
+
+const ShoppingCart = lazy(
+  () => import("@/apps/ShoppingCart/ShoppingCartApp.tsx"),
+);
 
 const router = createBrowserRouter([
   {
@@ -32,7 +38,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/image-gallery",
-        Component: ImageGalleryApp,
+        Component: ImageGallery,
       },
       {
         path: "/form-builder",
@@ -40,7 +46,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/shopping-cart",
-        Component: ShoppingCartApp,
+        Component: ShoppingCart,
         children: [
           {
             index: true,

@@ -8,8 +8,8 @@ import {
 export const App = () => {
   return (
     <div className="my-6 gap-16 w-screen flex flex-col items-center">
-      <NavigationMenu className="flex justify-between w-5/6 md:w-4/6 wrap">
-        <div className="flex justify-between gap-4">
+      <NavigationMenu className="flex flex-col lg:flex-row lg:justify-between w-5/6 md:w-4/6">
+        <div className="flex flex-col lg:flex-row gap-4">
           <NavigationMenuLink>
             <NavLink to="/">Home</NavLink>
           </NavigationMenuLink>

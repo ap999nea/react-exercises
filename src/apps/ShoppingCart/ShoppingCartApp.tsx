@@ -6,7 +6,7 @@ import {
 import { CartProvider } from "./contexts/CartContext";
 import { ProductProvider } from "./contexts/ProductContext";
 
-export const ShoppingCartApp = () => {
+const ShoppingCartApp = () => {
   return (
     <div className="flex flex-col gap-6 w-5/6 md:w-4/6">
       <h1 className="text-3xl font-bold">Shopping Cart</h1>
@@ -26,3 +26,5 @@ export const ShoppingCartApp = () => {
     </div>
   );
 };
+
+export default ShoppingCartApp;

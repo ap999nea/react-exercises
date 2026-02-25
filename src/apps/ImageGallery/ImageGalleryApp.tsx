@@ -42,7 +42,7 @@ const images = [
   },
 ];
 
-export const ImageGalleryApp = () => {
+const ImageGalleryApp = () => {
   const [filter, setFilter] = useState<string>("");
   const [filteredImages, setFilteredImages] = useState(images);
 
@@ -60,7 +60,7 @@ export const ImageGalleryApp = () => {
       <h1 className="text-3xl font-bold">Image Gallery</h1>
       <Card className="flex flex-col gap-4">
         <h2 className="font-semibold text-xl">Filter by tags:</h2>
-        <form className="flex justify-between items-center">
+        <form className="flex flex-col lg:flex-row gap-4 lg:gap-0 justify-between items-center">
           <div className="flex gap-4 items-center">
             <label className="font-bold" htmlFor="todo">
               Filter:
@@ -89,3 +89,5 @@ export const ImageGalleryApp = () => {
     </div>
   );
 };
+
+export default ImageGalleryApp;
