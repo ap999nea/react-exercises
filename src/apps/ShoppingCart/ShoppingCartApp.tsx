@@ -3,6 +3,8 @@ import {
   NavigationMenu,
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
+import { CartProvider } from "./contexts/CartContext";
+import { ProductProvider } from "./contexts/ProductContext";
 
 export const ShoppingCartApp = () => {
   return (
@@ -16,7 +18,11 @@ export const ShoppingCartApp = () => {
           <NavLink to="/shopping-cart/cart">Cart</NavLink>
         </NavigationMenuLink>
       </NavigationMenu>
-      <Outlet />
+      <ProductProvider>
+        <CartProvider>
+          <Outlet />
+        </CartProvider>
+      </ProductProvider>
     </div>
   );
 };
