@@ -9,6 +9,7 @@ import { TodoApp } from "./apps/Todo/TodoApp.tsx";
 import { WeatherApp } from "./apps/Weather/WeatherApp.tsx";
 import { ThemeProvider } from "./components/ThemeProvider/ThemeProvider.tsx";
 import "./index.css";
+import { MarkdownEditorApp } from "./apps/MarkdownEditor/MarkdownEditorApp.tsx";
 import { Welcome } from "./Welcome.tsx";
 
 const ImageGallery = lazy(
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
             Component: Cart,
           },
         ],
+      },
+      {
+        path: "/markdown-editor",
+        Component: MarkdownEditorApp,
       },
     ],
   },

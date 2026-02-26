@@ -30,6 +30,9 @@ export const App = () => {
             <NavigationMenuLink>
               <NavLink to="/shopping-cart">Shopping Cart</NavLink>
             </NavigationMenuLink>
+            <NavigationMenuLink>
+              <NavLink to="/markdown-editor">Markdown Editor</NavLink>
+            </NavigationMenuLink>
           </div>
           <div className="flex items-center gap-4">
             <ThemeToggle />
