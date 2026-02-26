@@ -8,18 +8,21 @@ import {
   TextQuote,
 } from "lucide-react";
 import { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Card } from "@/components/ui/card";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
 import { Textarea } from "@/components/ui/textarea";
+import { updateText } from "../state/slice";
+import type { RootState } from "../state/store";
 
 const wrappingElements = ["**", "*", "`"];
 const headings = ["# ", "## ", "### "];
 
 export const Editor = () => {
-  const [value, setValue] = useState(
-    "Hi! Try editing me however you like. \nI'm just a simple textarea",
-  );
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const textareaValue = useSelector((state: RootState) => state.editor.text);
+  const [value, setValue] = useState<string>(textareaValue);
+  const dispatch = useDispatch();
 
   const editText = (signToInsert: string) => {
     const textarea = textareaRef.current;
@@ -27,10 +30,11 @@ export const Editor = () => {
     const start = textarea.selectionStart;
     const end = textarea.selectionEnd;
     if (!start || !end) return;
-    const selectedText = value.slice(start, end);
+    const selectedText = textareaValue.slice(start, end);
+    const isHeading = headings.includes(signToInsert);
 
-    const newText = `${value.slice(0, start)}${signToInsert}${selectedText}${wrappingElements.includes(signToInsert) ? signToInsert : ""}${headings.includes(signToInsert) ? "\n" : ""}${value.slice(end)}`;
-    setValue(newText);
+    const newText = `${textareaValue.slice(0, start)}${isHeading ? "\n" : ""}${signToInsert}${selectedText}${wrappingElements.includes(signToInsert) ? signToInsert : ""}${isHeading ? "\n" : ""}${textareaValue.slice(end)}`;
+    dispatch(updateText(newText));
   };
 
   return (
@@ -41,10 +45,10 @@ export const Editor = () => {
           <Kbd className="w-10 h-10" onClick={() => editText("# ")}>
             <Heading1 className="text-2xl" />
           </Kbd>
-          <Kbd className="w-10 h-10" onClick={() => editText("##")}>
+          <Kbd className="w-10 h-10" onClick={() => editText("## ")}>
             <Heading2 className="text-2xl" />
           </Kbd>
-          <Kbd className="w-10 h-10" onClick={() => editText("###")}>
+          <Kbd className="w-10 h-10" onClick={() => editText("### ")}>
             <Heading3 className="text-2xl" />
           </Kbd>
           <Kbd className="w-10 h-10" onClick={() => editText("**")}>
