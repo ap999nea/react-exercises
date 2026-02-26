@@ -7,7 +7,7 @@ import {
   Italic,
   TextQuote,
 } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Card } from "@/components/ui/card";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
@@ -21,7 +21,6 @@ const headings = ["# ", "## ", "### "];
 export const Editor = () => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const textareaValue = useSelector((state: RootState) => state.editor.text);
-  const [value, setValue] = useState<string>(textareaValue);
   const dispatch = useDispatch();
 
   const editText = (signToInsert: string) => {
@@ -29,7 +28,7 @@ export const Editor = () => {
     if (!textarea) return;
     const start = textarea.selectionStart;
     const end = textarea.selectionEnd;
-    if (!start || !end) return;
+    if (!end) return;
     const selectedText = textareaValue.slice(start, end);
     const isHeading = headings.includes(signToInsert);
 
@@ -39,7 +38,9 @@ export const Editor = () => {
 
   return (
     <Card className="p-0 flex flex-col gap-4">
-      <div className="p-2 bg-[#171717]">Editor</div>
+      <div className="p-2 bg-[#171717] h-13 rounded-t-xl flex items-center">
+        <p>Editor</p>
+      </div>
       <div className="p-2 pb-4 flex flex-col gap-4">
         <KbdGroup className="p-2">
           <Kbd className="w-10 h-10" onClick={() => editText("# ")}>
@@ -67,8 +68,8 @@ export const Editor = () => {
         <Textarea
           ref={textareaRef}
           placeholder="Type here ..."
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
+          value={textareaValue}
+          onChange={(e) => dispatch(updateText(e.target.value))}
         />
       </div>
     </Card>

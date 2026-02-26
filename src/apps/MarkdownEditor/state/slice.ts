@@ -16,7 +16,7 @@ export const editorSlice = createSlice({
       state.text = action.payload;
     },
     eraseText: (state) => {
-      state.text = initialState.text;
+      state.text = "";
     },
   },
 });
