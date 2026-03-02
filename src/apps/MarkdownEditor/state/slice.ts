@@ -5,7 +5,7 @@ export interface EditorState {
 }
 
 const initialState: EditorState = {
-  text: "Hi! Try editing me however you like. I'm just a simple textarea",
+  text: "Hi! I'm just a simple textarea. Try editing me however you like.",
 };
 
 export const editorSlice = createSlice({

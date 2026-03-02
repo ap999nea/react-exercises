@@ -58,9 +58,9 @@ export const Editor = () => {
           <Kbd className="w-10 h-10" onClick={() => editText("*")}>
             <Italic className="text-2xl" />
           </Kbd>
-          <Kbd className="w-10 h-10" onClick={() => editText("> ")}>
+          {/* <Kbd className="w-10 h-10" onClick={() => editText("> ")}>
             <TextQuote className="text-2xl" />
-          </Kbd>
+          </Kbd> */}
           <Kbd className="w-10 h-10" onClick={() => editText("`")}>
             <Code className="text-2xl" />
           </Kbd>
