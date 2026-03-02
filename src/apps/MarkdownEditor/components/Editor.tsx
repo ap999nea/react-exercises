@@ -1,12 +1,4 @@
-import {
-  Bold,
-  Code,
-  Heading1,
-  Heading2,
-  Heading3,
-  Italic,
-  TextQuote,
-} from "lucide-react";
+import { Bold, Code, Heading1, Heading2, Heading3, Italic } from "lucide-react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Card } from "@/components/ui/card";
